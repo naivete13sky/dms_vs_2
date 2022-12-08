@@ -68,10 +68,10 @@ class DMS():
         return ans
 
     def get_job_fields_from_dms_db_pandas(self, job_id,*args, **kwargs):
-        sql = '''SELECT a.* from job a
+        sql = '''SELECT a.* from eptest_job_for_test a
                 where a.id = {}
                 '''.format(job_id)
-        engine = create_engine('postgresql+psycopg2://readonly:123456@10.97.80.119/dms')
+        engine = create_engine('postgresql+psycopg2://readonly:123456@10.97.80.119/epdms')
         pd_job_current = pd.read_sql(sql=sql, con=engine).loc[0]
         if 'field' in kwargs:
             return pd_job_current[kwargs['field']]
@@ -92,7 +92,7 @@ class DMS():
 
     def get_job_layer_fields_from_dms_db_pandas_one_layer(self, job_id,*args, **kwargs):
         layer=kwargs['filter']
-        sql = '''SELECT a.* from layer a
+        sql = '''SELECT a.* from eptest_layer a
             where a.job_id = {} and lower(a.layer)='{}'
                 '''.format(job_id,layer)
         # print("sql:",sql)
@@ -102,7 +102,7 @@ class DMS():
 
     def get_job_layer_drill_from_dms_db_pandas_one_job(self, job_id,*args, **kwargs):
 
-        sql = '''SELECT a.* from layer a
+        sql = '''SELECT a.* from eptest_layer a
             where a.job_id = {} and a.status = 'published' and a.layer_file_type = 'excellon2'
                 '''.format(job_id)
         # print("sql:",sql)
@@ -127,7 +127,7 @@ class DMS():
                 temp_ep_path = os.path.join(temp_path, 'ep')
                 if not os.path.exists(temp_ep_path):
                     os.mkdir(temp_ep_path)
-                file_gerber_name = job_current_all_fields['file_compressed'].split("/")[1]
+                file_gerber_name = job_current_all_fields['file'].split("/")[1]
 
                 # 下载并解压原始gerber文件
                 if not os.path.exists(os.path.join(temp_gerber_path, file_gerber_name)):
@@ -151,7 +151,7 @@ class DMS():
                 temp_g_path = os.path.join(temp_path, 'g')
                 if not os.path.exists(temp_g_path):
                     os.mkdir(temp_g_path)
-                file_odb_g_name = job_current_all_fields['file_odb_g'].split("/")[1]
+                file_odb_g_name = job_current_all_fields['standard_odb'].split("/")[1]
 
                 # 下载并解压原始gerber文件
                 if not os.path.exists(os.path.join(temp_g_path, file_odb_g_name)):
@@ -169,7 +169,7 @@ class DMS():
 
     def get_job_layer_rout_from_dms_db_pandas_one_job(self, job_id,*args, **kwargs):
 
-        sql = '''SELECT a.* from layer a
+        sql = '''SELECT a.* from eptest_layer a
             where a.job_id = {} and a.status = 'published' and a.layer_file_type = 'excellon2' and a.layer_type = 'rout'
                 '''.format(job_id)
         # print("sql:",sql)
@@ -222,7 +222,7 @@ def else1():
 
 if __name__ == "__main__":
     print("我是main()")
-    job_id = 2182
+    job_id = 4463
     layer_drill = DMS().get_job_layer_drill_from_dms_db_pandas_one_job(job_id)
     print('*' * 50, '\n', "layer_drill:", layer_drill)
     print([each.lower() for each in DMS().get_job_layer_drill_from_dms_db_pandas_one_job(job_id)['layer'] ])
