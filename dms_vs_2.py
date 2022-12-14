@@ -193,7 +193,7 @@ if __name__ == "__main__":
         session = requests.session()
 
         # response = session.post("http://10.97.80.119/job_manage/send_vs_g_local_result", json=json.dumps(data,ensure_ascii=False))  # post请求
-        response = session.post("http://10.97.80.119:8081/eptest/send_vs_g_local_result",json=json.dumps(data, ensure_ascii=False))  # post请求
+        response = session.post("http://10.97.80.119/eptest/send_vs_g_local_result",json=json.dumps(data, ensure_ascii=False))  # post请求
         print(response)
         print(response.text)
 
