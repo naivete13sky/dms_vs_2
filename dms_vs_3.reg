@@ -1,0 +1,16 @@
+Windows Registry Editor Version 5.00
+ 
+[HKEY_CLASSES_ROOT\epdms]
+@="URL:epdms"
+"URL Protocol"=""
+ 
+[HKEY_CLASSES_ROOT\epdms\DefaultIcon]
+@="\"C:\\cc\\python\\epwork\\dms_vs_2\\dms_vs_3.bat\""
+ 
+[HKEY_CLASSES_ROOT\epdms\Shell]
+ 
+[HKEY_CLASSES_ROOT\epdms\Shell\Open]
+ 
+[HKEY_CLASSES_ROOT\epdms\Shell\Open\command]
+@="C:\\cc\\python\\epwork\\dms_vs_2\\dms_vs_3.bat \"%1\""
+ 
