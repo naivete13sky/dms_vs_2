@@ -89,7 +89,7 @@ def vs_g(job_id):
                                                                           job_ep_name)
     # job_ep_g_path = r'Z:/share/{}/ep/{}'.format('temp' + "_" + str(job_id) + "_" + vs_time_g,job_ep_name)
     # 读取配置文件
-    with open(r'C:\cc\python\epwork\epcam_test_client\config_g\config.json', encoding='utf-8') as f:
+    with open(r'C:\cc\python\epwork\dms_vs_2\config_g\config.json', encoding='utf-8') as f:
         cfg = json.load(f)
     tol = cfg['job_manage']['vs']['vs_tol_g']
     print("tol:", tol)

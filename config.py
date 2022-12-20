@@ -10,7 +10,7 @@ class RunConfig:
     #配置EPCAM路径，只要换了版本就要更改
 
 
-    with open(r'C:\cc\python\epwork\dms_vs\myconfig.json', encoding='utf-8') as f:
+    with open(r'C:\cc\python\epwork\dms_vs_2\myconfig.json', encoding='utf-8') as f:
         cfg = json.load(f)
     epcam_path = cfg['epcam']['path']
     print("epcam_path:", epcam_path)
